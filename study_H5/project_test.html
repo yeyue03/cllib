@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>项目测试页</title>
+	</head>
+
+	<body>
+		<!--输入字符4位一空格-->
+		<input type="text" id="blur_ipu" oninput="blur_input(this)" />
+		
+		<table>
+			<tr data-index="0">
+				<td class="bs-checkbox"><input data-index="0" data-cid="312" name="btSelectItem" type="checkbox"></td>
+				<td style="">312</td>
+				<td style="">9130 0500 0136 6731</td>
+				<td style=""><span companyid="3">王雪</span></td>
+				<td style="">汽柴油通用卡</td>
+				<td style="">9130050001408847</td>
+				<td style="">未锁定</td>
+				<td style="">2018-12-10 10:12:56</td>
+				<td style=""><input type="number" name="312"></td>
+				<td style="">-</td>
+			</tr>
+			<br />
+			<tr data-index="1">
+				<td class="bs-checkbox"><input data-index="1" data-cid="376" name="btSelectItem" type="checkbox"></td>
+				<td style="">376</td>
+				<td style="">9130 0500 0136 6795</td>
+				<td style=""><span companyid="3">王雪</span></td>
+				<td style="">汽柴油通用卡</td>
+				<td style="">9130050001408847</td>
+				<td style="">未锁定</td>
+				<td style="">2018-12-10 10:12:56</td>
+				<td style=""><input type="number" name="376"></td>
+				<td style="">-</td>
+				<br />
+			</tr>
+			<tr data-index="2">
+				<td class="bs-checkbox"><input data-index="2" data-cid="303" name="btSelectItem" type="checkbox"></td>
+				<td style="">303</td>
+				<td style="">9130 0500 0136 6722</td>
+				<td style=""><span companyid="3">王雪</span></td>
+				<td style="">汽柴油通用卡</td>
+				<td style="">9130050001408847</td>
+				<td style="">未锁定</td>
+				<td style="">2018-12-10 10:12:56</td>
+				<td style=""><input type="number" name="303"></td>
+				<td style="">-</td>
+				<br />
+			</tr>
+			<tr data-index="3">
+				<td class="bs-checkbox"><input data-index="3" data-cid="367" name="btSelectItem" type="checkbox"></td>
+				<td style="">367</td>
+				<td style="">9130 0500 0136 6786</td>
+				<td style=""><span companyid="3">王雪</span></td>
+				<td style="">汽柴油通用卡</td>
+				<td style="">9130050001408847</td>
+				<td style="">未锁定</td>
+				<td style="">2018-12-10 10:12:56</td>
+				<td style=""><input type="number" name="367"></td>
+				<td style="">-</td>
+				<br />
+			</tr>
+			<tr data-index="4">
+				<td class="bs-checkbox"><input data-index="4" data-cid="335" name="btSelectItem" type="checkbox"></td>
+				<td style="">335</td>
+				<td style="">9130 0500 0136 6754</td>
+				<td style=""><span companyid="3">王雪</span></td>
+				<td style="">汽柴油通用卡</td>
+				<td style="">9130050001408847</td>
+				<td style="">未锁定</td>
+				<td style="">2018-12-10 10:12:56</td>
+				<td style=""><input type="number" name="335"></td>
+				<td style="">-</td>
+			</tr>
+			<br />
+			<tr data-index="5">
+				<td class="bs-checkbox"><input data-index="5" data-cid="358" name="btSelectItem" type="checkbox"></td>
+				<td style="">358</td>
+				<td style="">9130 0500 0136 6777</td>
+				<td style=""><span companyid="3">王雪</span></td>
+				<td style="">汽柴油通用卡</td>
+				<td style="">9130050001408847</td>
+				<td style="">未锁定</td>
+				<td style="">2018-12-10 10:12:56</td>
+				<td style=""><input type="number" name="358"></td>
+				<td style="">-</td>
+			</tr>
+		</table>
+		<div id="ddd" data-did="5">点击测试</div>
+		<a href="mailto:632491231@qq.com?subject=邮件标题&body=邮件内容">告诉我们</a>
+
+		<script type="text/javascript">
+			//			输入字符4位一空格 star
+			function blur_input(obj) {
+				var _blur = obj.value.replace(/\s/g, '');
+				var op = '';
+				for(var i = 0; i < _blur.length; i++) {
+					if(i % 4 == 0 && i > 0) {
+						op = op + ' ' + _blur.charAt(i);
+					} else {
+						op = op + _blur.charAt(i);
+					}
+				}
+				obj.value = op;
+			}
+			//			输入字符4位一空格 end
+
+			//			document.getElementsByName("btSelectItem").onclick = show;
+			//			function show() {
+			//				var obj = document.getElementsByName("btSelectItem");
+			////				var obj = document.body.querySelectorAll("input[type='checkbox']");
+			//				check_val = [];
+			//				for(k in obj) {
+			//					if(obj[k].checked)
+			//						check_val.push(obj[k].value);
+			//				}
+			//				console.log(check_val);
+			//			}
+			
+		</script>
+		<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+		<script type="text/javascript">
+			//			选中复选框存入数组 star
+			var cid_arr = new Array();
+			$("input[name='btSelectItem']").bind("click", function() {
+				var _cid = $(this).parent().next().text();
+				//				var _cid = that.dataset.cid;
+				if(this.checked) {
+					cid_arr.push(_cid);
+				} else {
+					cid_arr.splice($.inArray(_cid, cid_arr), 1);
+				}
+				console.log(cid_arr);
+			})
+			//			选中复选框存入数组 end
+//			window.onload = ischose;
+			//			检索复选框是否选中 star
+//						var cid_arr = ["312", "376", "303"];
+			$(".page-number").bind("click", function() {
+				ischose();
+			})
+			function ischose() {
+				var input_arr = $("input[name='btSelectItem']");
+				$.each(input_arr, function(i, item) {
+					var _cid = $(this).parent().next().html();
+					if($.inArray(_cid, cid_arr) != -1) {
+//						item.checked = true;
+//						$(this).parent().parent().addClass("selected");
+						$(this).trigger("click");
+					}
+				})
+			}
+			//			检索复选框是否选中 end
+
+			//			if ($.inArray(_cid, cid_arr) == -1) {
+			//						
+			//					} else {
+			//						
+			//					}
+		</script>
+		<script type="text/javascript">
+			$("#ddd").trigger("click");
+			$(document).ready(function() {
+				$("#ddd").click(function(){
+					alert(10);
+				})
+				$("#ddd").bind("click", function(){
+					alert(20);
+				})
+				$("#ddd").on("click", function(){
+					alert(30);
+				})
+				$("#ddd").click(function(){
+					alert(42);
+				})
+			});
+			
+			var card_arr = new Array();
+			//	声明对象
+			var obj = new Object();
+			var obj03 = {aa: ''};
+			//	直接初始化对象
+			var	obj02 = {name: "test02", class: "高三", id: "252", other: "其他"};
+			obj.name = "yeyue";
+			obj.id = 255;
+			obj.class = "高一";
+			delete obj02["name"];
+			card_arr.splice(0, 1);
+			card_arr.push(obj);
+			card_arr.push(obj02);
+			var strobj = JSON.stringify(card_arr);
+			console.log(strobj.indexOf("高三"));
+			console.log(( strobj));
+//			console.log("对象：", obj, "数组：", card_arr);
+//			console.log("获取数组中第一个对象的 name值：", card_arr[0].name);
+		</script>
+	</body>
+
+</html>

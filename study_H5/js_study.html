@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js学习</title>
+	</head>
+	<body>
+		<span id="test_innerhtml">测试js 中innerHtml</span><br />
+		<img id="test_img" src="img/angel.jpg" width="300" />
+		<br />
+		<a href="javascript:void(0)">单此处什么也不会发生</a>
+		<a href="javascript:void(alert('Warning!!!'))">点击显示警告信息!</a>
+		<br />
+		<a href="http://www.runoob.com/js/js-conventions.html">JavaScript 代码规范</a>
+		<div>
+			变量和函数为小驼峰法标识, 即除第一个单词之外，其他单词首字母大写（ lowerCamelCase）<br />
+			全局变量为大写 (UPPERCASE ) <br />
+			常量 (如 PI) 为大写 (UPPERCASE ) <br />
+		</div>
+		<div>
+			函数表达式 - 匿名函数 <br />
+			var x = function (a, b) {return a * b};  <br />
+			var z = x(4, 3);
+			
+			<p>构造函数，与上同</p>
+			var myFunction = new Function("a", "b", "return a * b");  <br />
+			var x = myFunction(4, 3);
+			
+			<p>匿名自我调用的函数</p>
+			(function () {
+			    var x = "Hello!!";      // 我将调用自己
+			})();
+			
+			<p>箭头函数</p>
+			<p>箭头函数会默认帮我们绑定外层 this 的值，所以在箭头函数中 this 的值和外层的 this 是一样的。</p>
+			<p>使用 const 比使用 var 更安全，因为函数表达式始终是一个常量</p>
+			const x = (x, y) => { return x * y };
+			x(2,5) 返回 10
+			
+		</div>
+		
+		<script type="text/javascript">
+			var _inner = document.getElementById("test_innerhtml");
+			_inner.innerHTML += "，测试成功增加"; 
+			document.write("<p>测试document write</p>");
+			
+			//  点击更换图像
+			var _img = document.getElementById("test_img");
+			_img.onclick = function click_img () {
+				if (_img.src.match("c.c")) {
+					console.log(_img.src.match("c.c"));
+					_img.src = "img/angel.jpg";
+				} else {
+					_img.src = "img/c.c.jpg";
+				}
+			}
+			
+			//  您可以在文本字符串中使用反斜杠对代码行进行换行
+			console.log(16+"a\
+aa");
+			//  对象属性有两种寻址方式    Object.name = Object["name"]
+			
+			//  对象方法
+			var person = {
+			    firstName: "对象",
+			    lastName : "方法应用",
+			    id : 5566,
+			    fullName : function(a) 
+				{
+			       return this.firstName + " " + this.lastName + a;
+			    }
+			};
+			console.log(person.fullName("参数"));
+			
+			moren = "没有var 将声明 window 的一个属性 moren, 可删除";
+			delete moren;
+//			console.log(moren);
+
+			//  HTML DOM 事件
+			//  参考 http://www.runoob.com/jsref/dom-obj-event.html
+			
+			//  字符串方法
+			//  参考 http://www.runoob.com/js/js-strings.html
+			
+			var a = 5;
+			var b = a++;
+			console.log(a,b);  // 6 5
+			
+			//  如果把数字与字符串相加，结果将成为字符串
+			
+			//  JavaScript 类型转换 **************************************************
+			//  参考 http://www.runoob.com/js/js-type-conversion.html
+			//  typeof 操作符
+//			typeof "John"                 // 返回 string 
+//			typeof 3.14                   // 返回 number
+//			typeof NaN                    // 返回 number
+//			typeof false                  // 返回 boolean
+//			typeof [1,2,3,4]              // 返回 object
+//			typeof {name:'John', age:34}  // 返回 object
+//			typeof new Date()             // 返回 object
+//			typeof function () {}         // 返回 function
+//			typeof myCar                  // 返回 undefined (如果 myCar 没有声明)
+//			typeof null                   // 返回 object
+//			
+//			//  constructor 属性
+//			"John".constructor                 // 返回函数 String()  { [native code] }
+//			(3.14).constructor                 // 返回函数 Number()  { [native code] }
+//			false.constructor                  // 返回函数 Boolean() { [native code] }
+//			[1,2,3,4].constructor              // 返回函数 Array()   { [native code] }
+//			{name:'John', age:34}.constructor  // 返回函数 Object()  { [native code] }
+//			new Date().constructor             // 返回函数 Date()    { [native code] }
+//			function () {}.constructor         // 返回函数 Function(){ [native code] }
+//			
+//			//  使用 constructor 属性来查看对象是否为数组 (包含字符串 "Array"):
+//			function isArray(myArray) {
+//			    return myArray.constructor.toString().indexOf("Array") > -1;
+//			}
+//			//  使用 constructor 属性来查看对象是否为日期 (包含字符串 "Date"):
+//			function isDate(myDate) {
+//			    return myDate.constructor.toString().indexOf("Date") > -1;
+//			}
+//			
+//			//  将数字转换为字符串
+//			String() - 转换为字符串
+//			String(1000 + 23);   // 返回 1023
+//			toString() - 转换为字符串
+//			(1000 + 23).toString();    // 返回 1023
+//			
+//			Number() - 将字符串转换为数字
+//			Number("3.14")    // 返回 3.14
+//			Number(" ")       // 返回 0 
+//			Number("")        // 返回 0
+//			Number("99 88")   // 返回 NaN
+//			
+//			parseFloat() - 解析一个字符串，并返回一个浮点数
+//			parseInt() - 解析一个字符串，并返回一个整数
+//			console.log(Number("555.55"));
+			
+			//  一元运算符 +
+//			+ 可用于将变量转换为数字
+//			Number(false)     // 返回 0
+//			Number(true)      // 返回 1
+//			console.log(+"222.55");
+
+			//  Number() 可将日期转换为数字
+			d = new Date();
+			console.log(Number(d), d.getTime());  // 返回 1545631769142
+			
+			//  **********************************************************************
+			
+			//  JavaScript 错误 - throw、try 和 catch
+//			x = document.getElementById("demo").value;
+//		    try { 
+//		        if(x == "")  throw "值为空";
+//		        if(isNaN(x)) throw "不是数字";
+//		        x = Number(x);
+//		        if(x < 5)    throw "太小";
+//		        if(x > 10)   throw "太大";
+//		    }
+//		    catch(err) {
+//		        message.innerHTML = "错误: " + err;
+//		    }
+
+			//  JavaScript 严格模式(use strict)
+//			"use strict" 
+
+			//  JavaScript let 和 const
+			let - 声明的变量只在 let 命令所在的代码块内有效。
+			const - 声明一个只读的常量，一旦声明，常量的值就不能改变。
+			
+			使用 JavaScript 内置函数 JSON.parse() 将字符串转换为 JavaScript 对象
+			var obj = JSON.parse(text);
+			
+			
+		</script>
+	</body>
+</html>
