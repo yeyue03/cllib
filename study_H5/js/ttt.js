@@ -1,4 +1,4 @@
-<script type="text/javascript">
+﻿<script type="text/javascript">
     function initTable() {
         //先销毁表格
         $('#cusTable').bootstrapTable('destroy');
@@ -279,8 +279,13 @@
 			})
 			console.log(cid_arr);
 		})
-		$("input[name='btSelectAll']").click( function() {
+		
+		$("input[name='btSelectItem']").off("click").on("click", function() {
 			alert(10);
+		})
+		
+		$("input[name='btSelectItem']")[0].addEventListener("click", function(){
+			alert(22);
 		})
 		
 //		金额输入框事件
