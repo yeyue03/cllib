@@ -31,6 +31,49 @@
 		p.inset {border-style:inset;}
 		p.outset {border-style:outset;}
 		p.hidden {border-style:hidden;}
+		
+		/*CSS3 边框*/
+		.border
+		{
+			border:15px solid transparent;
+			width:250px;
+			padding:10px 20px;
+		}
+		#round
+		{
+			box-shadow: 10px 10px 5px #888888;
+			-webkit-border-image:url(img/border.png) 30 30 round; /* Safari 5 and older */
+			-o-border-image:url(img/border.png) 30 30 round; /* Opera */
+			border-image:url(img/border.png) 30 30 round;
+		}
+		#stretch
+		{
+			-webkit-border-image:url(img/border.png) 30 30 stretch; /* Safari 5 and older */
+			-o-border-image:url(img/border.png) 30 30 stretch; /* Opera */
+			border-image:url(img/border.png) 30 30 stretch;
+		}
+		
+		/*CSS3 背景*/
+		#example1 {
+		    background-image: url(img/img_flwr.gif), url(img/paper.gif);
+		    background-position: right bottom, left top;
+		    background-repeat: no-repeat, repeat;
+		    padding: 15px;
+		}
+		/*或写为*/
+		#example1 {
+		    background: url(img/img_flwr.gif) right bottom no-repeat, url(img/paper.gif) left top repeat;
+		    padding: 15px;
+		}
+		/*CSS3 background-clip属性*/
+		#example3 {
+		    border: 10px dotted black;
+		    padding:35px;
+		    background: yellow;
+		    background-clip: content-box;
+		}
+		
+		
 	</style>
 
 	<body>
@@ -109,6 +152,131 @@
 			<h3>CSS 属性 选择器</h3>
 			<a href="http://www.runoob.com/css/css-attribute-selectors.html">参考  http://www.runoob.com/css/css-attribute-selectors.html</a>
 		</div>
+		
+		<h2>CSS3 教程</h2>
+		<div id="round" class="border">这里，图像平铺（重复）来填充该区域。</div>
+		<br>
+		<div id="stretch" class="border">这里，图像被拉伸以填充该区域。</div>
+		<h3>CSS3 背景</h3>
+		<div id="example1">
+			<h4>Lorem Ipsum Dolor</h1>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+			<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+		</div>
+		<div>
+			<h4>CSS3的background-Origin属性</h4>
+			<p>background-Origin属性指定了背景图像的位置区域。content-box, padding-box,和 border-box区域内可以放置背景图像。</p>
+			background-origin:content-box;  
+		</div>
+		<div>
+			<h4>CSS3 background-clip属性</h4>
+			<p>CSS3中background-clip背景剪裁属性是从指定位置开始绘制</p>
+			<p>background-clip: content-box:</p>
+			<div id="example3">
+				<h2>Lorem Ipsum Dolor</h2>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+			</div>
+		</div>
+		
+		<h3>CSS3 渐变（Gradients）</h3>
+		<a href="http://www.runoob.com/css3/css3-gradients.html" target="_blank">渐变参考  http://www.runoob.com/css3/css3-gradients.html</a>
+		
+		<div>
+			<h3>CSS3 文本效果</h3>
+			<h1 style="text-shadow: 5px 5px 5px #FF0000;">Text-shadow effect!</h1>
+			<p><b>注意:</b> Internet Explorer 9 以及更早版本的浏览器不支持 text-shadow属性.</p>
+			<h4>CSS3 box-shadow属性</h4>
+			<p>#boxshadow::after {
+			    content: '';
+			    position: absolute;
+			    z-index: -1; /* hide shadow behind image */
+			    -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+			    -moz-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+			    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+			    width: 70%;
+			    left: 15%; /* one half of the remaining 30% */
+			    height: 100px;
+			    bottom: 0;
+			}</p>
+		</div>
+		<div class="test" style="">
+			<h3>CSS3 Text Overflow属性</h3>
+			<p>CSS3文本溢出属性指定应向用户如何显示溢出内容</p>
+			<span style="display:block;white-space:nowrap; width:200px; overflow:hidden; border:1px solid #000000;text-overflow:ellipsis;">This is some long text that will not fit in the box</span>
+			<p>div 使用 &quot;text-overflow:clip&quot;:</p>
+			<span class="test" style="text-overflow:clip;">This is some long text that will not fit in the box</span>
+			<p>div 使用自定义字符串 &quot;text-overflow: &gt;&gt;&quot;(只在 Firefox 浏览器下有效):</p>
+			<span class="test" style="text-overflow:'>>';">This is some long text that will not fit in the box</span>
+		</div>
+		<div>
+			<h3>CSS3的换行</h3>
+			<p>word-wrap:break-word;</p>
+			<h4>CSS3 单词拆分换行</h4>
+			<p>word-break: keep-all;  建议</p>
+			<p>word-break: break-all;</p>
+		</div>
+		<div>
+			<h3>CSS3 字体</h3>
+			<p>@font-face
+			{
+				font-family: myFirstFont;
+				src: url('Sansation_Light.ttf')
+					,url('Sansation_Light.eot'); /* IE9 */
+			}
+			
+			div
+			{
+				font-family:myFirstFont;
+			}</p>
+		</div>
+		<div>
+			<h3>CSS3 2D 转换</h3>
+			<h4>translate() - 根据左(X轴)和顶部(Y轴)位置给定的参数，从当前元素位置移动。</h4>
+			<p>transform:translate(50px,100px);
+			-ms-transform:translate(50px,100px); /* IE 9 */
+			-webkit-transform:translate(50px,100px); /* Safari and Chrome */</p>
+			<h4>rotate() - 在一个给定度数顺时针旋转的元素。负值是允许的，这样是元素逆时针旋转。</h4>
+			<p>transform:rotate(30deg);
+			-ms-transform:rotate(30deg); /* IE 9 */
+			-webkit-transform:rotate(30deg); /* Safari and Chrome */</p>
+			<h4>scale() - 该元素增加或减少的大小，取决于宽度（X轴）和高度（Y轴）的参数：</h4>
+			<p>-ms-transform: scale(2,3); /* IE 9 */
+		    -webkit-transform: scale(2,3); /* Safari */
+		    transform: scale(2,3); /* 标准语法 */</p>
+		    
+		    <h4>skew(<angle> [,<angle>]) - 表示X轴和Y轴倾斜的角度，如果第二个参数为空，则默认为0，参数为负表示向相反方向倾斜</h4>
+		    	<h5>skewX(<angle>);表示只在X轴(水平方向)倾斜。skewY(<angle>);表示只在Y轴(垂直方向)倾斜。</h5>
+		    		<p>transform:skew(30deg,20deg);
+				-ms-transform:skew(30deg,20deg); /* IE 9 */
+				-webkit-transform:skew(30deg,50deg); /* Safari and Chrome */</p>
+			<h4>matrix() - 2D变换方法合并成一个。matrix 方法有六个参数，包含旋转，缩放，移动（平移）和倾斜功能。</h4>
+			<h4>transform:matrix(1,0,0,1,e,f) - 参数：x轴缩放、x轴角度、y轴角度、y轴缩放、x轴平移、y轴平移</h4>
+			<p>transform:matrix(1,0.5,-0.5,1,0,0);
+			-ms-transform:matrix(1,0.5,-0.5,1,0,0); /* IE 9 */
+			-webkit-transform:matrix(1,0.5,-0.5,1,0,0); /* Safari and Chrome */</p>
+			
+			<h3>CSS3 3D 转换</h3>
+			<a href="http://www.runoob.com/css3/css3-3dtransforms.html">参考  http://www.runoob.com/css3/css3-3dtransforms.html</a>
+		</div>
+		<div>
+			<h3>CSS3 过渡</h3>
+			<p>transition-property: width;
+		    transition-duration: 1s;
+		    transition-timing-function: linear;
+		    transition-delay: 2s;
+		    /* Safari */
+		    -webkit-transition-property:width;
+		    -webkit-transition-duration:1s;
+		    -webkit-transition-timing-function:linear;
+		    -webkit-transition-delay:2s;</p>
+		    <h4>合并写法</h4>
+		    transition: width 1s linear 2s;
+		    /* Safari */
+		    -webkit-transition:width 1s linear 2s;
+		</div>
+		
+		
+		
+		
 	</body>
-
 </html>
