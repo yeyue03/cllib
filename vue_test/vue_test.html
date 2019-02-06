@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-test</title>
+</head>
+<style type="text/css">
+	.css_span {
+		display: block;
+		width: 200px;
+		background: yellow;
+	}
+	.css_span02 {
+		color: #ff0000;
+	}
+</style>
+<body>
+	<div id="data_test01">
+		<h3>Vue - 数据、方法、属性绑定</h3>
+		哦哈哈哈{{msg}}
+		<br />
+		{{name}}
+		{{greet('morning')}} <br/>
+		<!-- 若无参数，此次方法也要加括号 不然Vue以为这是属性，而不会认为这是方法 -->
+		{{greet()}}
+		<a v-bind:href="website">百度链接</a><br />
+		<span v-html="websiteTag"></span>
+	</div>
+	<div id="event_test">
+		<h3>Vue - 事件</h3>
+		<button data-add="1" v-on:click="changeAge">长一岁</button>
+		<button data-add="0" v-on:click="changeAge">减一岁</button>
+		<button data-add="2" @dblclick="changeAge">双击长五岁</button>
+		<p>My age is {{age}}</p>
+		<!-- v-on:[事件] 参考MDN事件类型一览表 https://developer.mozilla.org/zh-CN/docs/Web/Events -->
+
+		<h4>鼠标事件</h4>
+		<div style="width: 200px;padding: 50px 0px;border: solid 1px #ccc;text-align: center;" @mousemove="updateXY">{{x}},{{y}}
+			<!-- 事件修饰符 -->
+			<span @mousemove.stop="">鼠标移到这停止</span>
+		</div>
+		<a href="https://www.baidu.com" @click.prevent="">这个百度链接不会跳转</a>
+
+		<h4>键盘事件</h4>
+		<label>姓名：</label>
+		<input type="text" name="name" :value="name" @keyup.enter="logName" /><span>{{name}}</span>
+		<!-- 双向数据绑定 -->
+		<label>年龄：</label>
+		<input type="text" name="" ref="age" @keyup.enter="logAge" /><br/>
+		<!-- 更简便的方法 -->
+		<label>v-model 年龄：</label>
+		<input type="text" v-model="age" /><span>{{age}}</span>
+
+		<h4>Computed 计算属性</h4>
+		<button>age + 1 = {{computed_age_add}}</button>
+	</div>
+	<div id="css_bind">
+		<h4>动态绑定CSS样式</h4>
+		<span :class="css_obj" @click="span_click">测试绑定CSS样式</span>
+
+		<h4>v-if 指令</h4>
+		<button @click="show_fun">显示/隐藏</button>
+		<span v-if="vif==0">这是一段隐藏的内容 if true {{vif}}</span>
+		<span v-else-if="vif==1">这是一段隐藏的内容 v-else-if {{vif}}</span>
+		<span v-else=>这是一段隐藏的内容 else {{vif}}</span><br/>
+
+		<h4>v-show 指令</h4>
+		<span v-show="vshow">v-show是一直站位的 改变的只是 display none 值</span>
+
+		<h4>v-for 指令</h4>
+		<span v-for="(val, index) in vfor">{{index}}:{{val}} </span><br/>
+		<span v-for="(val, key, index) in vforObj">{{index}}、{{key}}:{{val}} </span>
+		<template v-for="(item, index) in vfor">
+			<p v-if="index < 3">template 模板块中循环</p>
+			<span v-if="index < 3">嘿哈 {{item}}</span>
+		</template>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		var vm01 = new Vue({
+			el: "#data_test01",
+			data:{
+				msg: "第一个test",
+				name: "yeyue",
+				website: "https://www.baidu.com",
+				websiteTag: "<a href='https://www.baidu.com'>vue 输出&lt;a&gt;标签</a>"
+			},
+			methods:{
+				greet(time) {
+					return "good " + time + " " + this.name;
+				}
+			}
+		});
+
+		var vm02 = new Vue({
+			el: "#event_test",
+			data: {
+				age: 22,
+				x: 0,
+				y: 0,
+				name: ""
+			},
+			methods: {
+				changeAge: function(e) {
+					// console.log(e);
+					if(e.target.dataset.add==0) {
+						this.age--;
+					} else if(e.target.dataset.add==2) {
+						this.age+=5;
+					} else {
+						this.age++;
+					}
+				},
+				updateXY: function(e) {
+					this.x = e.offsetX;
+					this.y = e.offsetY;
+				},
+				logName: function(e) {
+					this.name = e.target.value;
+					console.log("您输入的姓名为：" + this.name);
+				},
+				logAge: function() {
+					this.age = this.$refs.age.value;
+					console.log("年龄为：" + this.age);
+				}
+			},
+			computed: {
+				// 更优化，只有不同时才会执行  但一般只有在搜索与需要大量耗时的计算才会用
+				computed_age_add: function() {
+					return this.age + 1;
+				}
+			}
+		});
+
+		var vm03 = new Vue({
+			el: "#css_bind",
+			data: {
+				css_true: true,
+				vif: 0,
+				vshow: false,
+				vfor: ["aa","bb","cc","dd","ee"],
+				vforObj: {name: "aa", age: 20, sex: "boy"}
+			},
+			methods: {
+				span_click: function() {
+					console.log("methods 执行1");
+					this.css_true = !this.css_true;
+				},
+				show_fun: function() {
+					this.vif ++;
+					this.vshow = !this.vshow;
+					if (this.vif > 3) this.vif = 0;
+				}
+			},
+			computed: {
+				css_obj: function() {
+					console.log("computed 执行");
+					return {css_span: this.css_true, css_span02:this.css_true};
+				}
+			}
+		});
+	</script>
+</body>
+</html>
